@@ -1,0 +1,13 @@
+{
+  "name": "greeting",
+  "version": "1.0.0",
+  "description": "EJS - Dynamic User Greeting with Conditional Display",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.18.2"
+  }
+}

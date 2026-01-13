@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Token Expiration System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginSection" class="section">
+            <h1>JWT Authentication System</h1>
+            <div class="card">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div id="loginError" class="error-message"></div>
+                <div class="demo-credentials">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <p>Username: <code>admin</code> / Password: <code>admin123</code></p>
+                    <p>Username: <code>user</code> / Password: <code>user123</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section" style="display: none;">
+            <h1>Dashboard</h1>
+            <div class="card">
+                <div class="user-info">
+                    <h2>Welcome, <span id="userName"></span>!</h2>
+                    <p>Token expires in: <span id="tokenTimer">--:--</span></p>
+                </div>
+                <div class="actions">
+                    <button id="fetchProtectedBtn" class="btn btn-secondary">Fetch Protected Data</button>
+                    <button id="fetchProfileBtn" class="btn btn-secondary">Get Profile</button>
+                    <button id="logoutBtn" class="btn btn-danger">Logout</button>
+                </div>
+                <div id="apiResponse" class="api-response"></div>
+            </div>
+        </div>
+
+        <!-- Token Expired Modal -->
+        <div id="expiredModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Session Expired</h2>
+                <p>Your session has expired after 30 minutes of inactivity.</p>
+                <p>Please login again to continue.</p>
+                <button id="redirectToLoginBtn" class="btn btn-primary">Go to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

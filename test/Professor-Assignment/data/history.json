@@ -1,0 +1,18 @@
+[
+  {
+    "assignmentId": 1,
+    "action": "approved",
+    "performedBy": "professor@university.edu",
+    "signatureHash": "353ff00b88622a3fedaa05d5426442701c6bfd9291748ff6f8f84007067576c9",
+    "remarks": "good",
+    "timestamp": "2026-01-13T17:25:37.494Z"
+  },
+  {
+    "assignmentId": 2,
+    "action": "rejected",
+    "performedBy": "professor@university.edu",
+    "signatureHash": "c740884606b3390e429dd5f6fc9fe07446c6c9bcfc9f86ff499cc6e94a3969fd",
+    "remarks": "fuddu h",
+    "timestamp": "2026-01-13T17:34:39.747Z"
+  }
+]

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error <%= errorData.statusCode %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .error-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        .error-icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+        .error-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .error-message {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .error-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .error-detail-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .error-detail-label {
+            font-weight: bold;
+            color: #34495e;
+            display: inline-block;
+            width: 120px;
+        }
+        .error-detail-value {
+            color: #7f8c8d;
+        }
+        .suggestion-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .suggestion-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        .suggestion-text {
+            color: #388e3c;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .error-type-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .error-type-NOT_FOUND {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .error-type-SERVER_ERROR {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        .error-type-VALIDATION {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <% if (errorData.errorType === 'NOT_FOUND') { %>
+                🔍
+            <% } else if (errorData.errorType === 'SERVER_ERROR') { %>
+                ⚠️
+            <% } else if (errorData.errorType === 'VALIDATION') { %>
+                ✏️
+            <% } %>
+        </div>
+        
+        <div class="error-type-badge error-type-<%= errorData.errorType %>">
+            <%= errorData.errorType %>
+        </div>
+        
+        <h1 class="error-title">
+            <% if (errorData.errorType === 'NOT_FOUND') { %>
+                Page not found
+            <% } else if (errorData.errorType === 'SERVER_ERROR') { %>
+                Internal server error
+            <% } else if (errorData.errorType === 'VALIDATION') { %>
+                Please check your form inputs
+            <% } %>
+        </h1>
+        
+        <p class="error-message"><%= errorData.message %></p>
+        
+        <div class="error-details">
+            <div class="error-detail-item">
+                <span class="error-detail-label">Status Code:</span>
+                <span class="error-detail-value"><%= errorData.statusCode %></span>
+            </div>
+            
+            <div class="error-detail-item">
+                <span class="error-detail-label">Error Message:</span>
+                <span class="error-detail-value"><%= errorData.message %></span>
+            </div>
+            
+            <div class="error-detail-item">
+                <span class="error-detail-label">Timestamp:</span>
+                <span class="error-detail-value"><%= new Date(errorData.timestamp).toLocaleString() %></span>
+            </div>
+            
+            <% if (errorData.requestUrl) { %>
+            <div class="error-detail-item">
+                <span class="error-detail-label">Request URL:</span>
+                <span class="error-detail-value"><%= errorData.requestUrl %></span>
+            </div>
+            <% } %>
+        </div>
+        
+        <div class="suggestion-box">
+            <div class="suggestion-title">💡 Suggestion:</div>
+            <div class="suggestion-text">
+                <% if (errorData.errorType === 'NOT_FOUND') { %>
+                    Go back to Home Page
+                <% } else if (errorData.errorType === 'SERVER_ERROR') { %>
+                    Try again later
+                <% } else if (errorData.errorType === 'VALIDATION') { %>
+                    Fix the highlighted form inputs and resubmit
+                <% } %>
+            </div>
+        </div>
+        
+        <% if (errorData.errorType === 'NOT_FOUND') { %>
+            <a href="/" class="btn">Go to Home Page</a>
+        <% } else if (errorData.errorType === 'SERVER_ERROR') { %>
+            <a href="javascript:location.reload()" class="btn">Refresh Page</a>
+        <% } else if (errorData.errorType === 'VALIDATION') { %>
+            <a href="javascript:history.back()" class="btn">Go Back</a>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        th:first-child {
+            border-top-left-radius: 8px;
+        }
+        th:last-child {
+            border-top-right-radius: 8px;
+        }
+        tbody tr {
+            border-bottom: 1px solid #ecf0f1;
+            transition: background-color 0.2s;
+        }
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+        td {
+            padding: 15px;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+        td:first-child {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .mark {
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 50px;
+            text-align: center;
+        }
+        .mark-low {
+            background-color: #fee;
+            color: #c62828;
+        }
+        .mark-pass {
+            color: #2c3e50;
+        }
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .summary p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .summary strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Student Report</h1>
+            <p>Academic Performance Report</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Math</th>
+                        <th>Science</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% students.forEach(function(student) { %>
+                        <tr>
+                            <td><%= student.name %></td>
+                            <td>
+                                <span class="mark <%= student.marks.math < 70 ? 'mark-low' : 'mark-pass' %>">
+                                    <%= student.marks.math %>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="mark <%= student.marks.science < 70 ? 'mark-low' : 'mark-pass' %>">
+                                    <%= student.marks.science %>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="mark <%= student.marks.english < 70 ? 'mark-low' : 'mark-pass' %>">
+                                    <%= student.marks.english %>
+                                </span>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+
+            <div class="summary">
+                <p><strong>Note:</strong> Marks below 70 are highlighted in red.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

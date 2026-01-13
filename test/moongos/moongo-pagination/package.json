@@ -1,0 +1,14 @@
+{
+  "name": "moongo",
+  "version": "1.0.0",
+  "description": "MongoDB & EJS - Student Management System with Pagination",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .student-details h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        .student-details p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        .admin-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .courses-list {
+            display: grid;
+            gap: 15px;
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            background: #f8f9fa;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .course-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .course-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .course-grade {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 6px;
+            min-width: 50px;
+            text-align: center;
+        }
+        .grade-A {
+            background: #d4edda;
+            color: #155724;
+            border-left-color: #28a745;
+        }
+        .grade-B, .grade-C {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left-color: #17a2b8;
+        }
+        .grade-other {
+            background: #f8d7da;
+            color: #721c24;
+            border-left-color: #dc3545;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+        .notice-section {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .notice-section h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        .notice-example {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        .notice-example strong {
+            color: #856404;
+        }
+        .notice-label {
+            font-size: 12px;
+            color: #856404;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Student Information Header -->
+        <div class="header">
+            <div class="student-info">
+                <div class="student-details">
+                    <h1><%= student.name %></h1>
+                    <p><%= student.email %></p>
+                </div>
+                <% if (student.role === 'admin') { %>
+                    <div class="admin-badge">★ Admin Access</div>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Notice Section - Escaping vs Non-Escaping -->
+        <% if (typeof notice !== 'undefined' && notice) { %>
+        <div class="dashboard-card">
+            <h2>Important Notice</h2>
+            <div class="notice-section">
+                <h3>Escaping vs Non-Escaping Example</h3>
+                
+                <div class="notice-example">
+                    <div class="notice-label">Using &lt;%= %&gt; (Escaped - Shows as plain text):</div>
+                    <%= notice %>
+                </div>
+                
+                <div class="notice-example">
+                    <div class="notice-label">Using &lt;%- %&gt; (Unescaped - Renders HTML):</div>
+                    <%- notice %>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- Course List -->
+        <div class="dashboard-card">
+            <h2>My Courses</h2>
+            <% if (courses && courses.length > 0) { %>
+                <div class="courses-list">
+                    <% courses.forEach(function(course) { %>
+                        <div class="course-item grade-<%= course.grade === 'A' ? 'A' : (course.grade === 'B' || course.grade === 'C' ? course.grade : 'other') %>">
+                            <div class="course-title"><%= course.title %></div>
+                            <div class="course-grade grade-<%= course.grade === 'A' ? 'A' : (course.grade === 'B' || course.grade === 'C' ? course.grade : 'other') %>">
+                                <%= course.grade %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="empty-state">No courses enrolled yet</div>
+            <% } %>
+        </div>
+
+        <!-- Footer Include -->
+        <%- include('footer') %>
+    </div>
+</body>
+</html>

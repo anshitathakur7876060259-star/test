@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title": "Research Paper on Machine Learning",
+    "studentName": "John Doe",
+    "studentEmail": "john.doe@student.edu",
+    "studentId": 101,
+    "status": "approved",
+    "submittedAt": "2024-01-15T10:30:00.000Z",
+    "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "approvedAt": "2026-01-13T17:25:37.490Z",
+    "approvedBy": "professor@university.edu",
+    "remarks": "good"
+  },
+  {
+    "id": 2,
+    "title": "Software Engineering Project Report",
+    "studentName": "Jane Smith",
+    "studentEmail": "jane.smith@student.edu",
+    "studentId": 102,
+    "status": "rejected",
+    "submittedAt": "2024-01-16T14:20:00.000Z",
+    "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "rejectedAt": "2026-01-13T17:34:39.742Z",
+    "rejectedBy": "professor@university.edu",
+    "remarks": "fuddu h"
+  }
+]

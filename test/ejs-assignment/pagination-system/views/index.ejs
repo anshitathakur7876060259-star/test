@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - Pagination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .product-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .product-item {
+            background-color: #f4f4f4;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .page-info {
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Catalog</h1>
+
+    <ul class="product-list">
+        <% products.forEach(product => { %>
+            <li class="product-item">
+                <strong>ID:</strong> <%= product.id %> - <strong>Name:</strong> <%= product.name %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <button onclick="window.location.href='/?page=<%= currentPage - 1 %>'">Previous</button>
+        <% } else { %>
+            <button disabled>Previous</button>
+        <% } %>
+
+        <span class="page-info">Page <%= currentPage %> of <%= totalPages %></span>
+
+        <% if (currentPage < totalPages) { %>
+            <button onclick="window.location.href='/?page=<%= currentPage + 1 %>'">Next</button>
+        <% } else { %>
+            <button disabled>Next</button>
+        <% } %>
+    </div>
+</body>
+</html>

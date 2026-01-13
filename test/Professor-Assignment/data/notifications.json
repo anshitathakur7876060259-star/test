@@ -1,0 +1,20 @@
+[
+  {
+    "assignmentId": 1,
+    "studentId": 101,
+    "studentEmail": "john.doe@student.edu",
+    "type": "approval",
+    "message": "Your assignment \"Research Paper on Machine Learning\" has been approved by the professor.",
+    "timestamp": "2026-01-13T17:25:37.500Z",
+    "id": 1
+  },
+  {
+    "assignmentId": 2,
+    "studentId": 102,
+    "studentEmail": "jane.smith@student.edu",
+    "type": "rejection",
+    "message": "Your assignment \"Software Engineering Project Report\" has been rejected by the professor. Remarks: fuddu h",
+    "timestamp": "2026-01-13T17:34:39.750Z",
+    "id": 2
+  }
+]

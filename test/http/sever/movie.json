@@ -1,0 +1,9 @@
+[
+  { "title": "Fast Chase", "genre": "Action", "year": 2020, "rating": 7.5 },
+  { "title": "Mission Reloaded", "genre": "Action", "year": 2022, "rating": 8.1 },
+  { "title": "Love in Paris", "genre": "Romance", "year": 2020, "rating": 6.8 },
+  { "title": "Laugh Out Loud", "genre": "Comedy", "year": 2022, "rating": 7.2 },
+  { "title": "Silent Whisper", "genre": "Thriller", "year": 2021, "rating": 8.3 },
+  { "title": "Battlefield Glory", "genre": "Action", "year": 2021, "rating": 7.9 },
+  { "title": "Eternal Love", "genre": "Romance", "year": 2022, "rating": 7.0 }
+]
